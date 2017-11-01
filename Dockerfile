@@ -23,6 +23,9 @@ RUN mv config.json.example config.json
 RUN mkdir uploads
 RUN mkdir data
 RUN ln -s $PWD/data/ctfpad.sqlite $PWD/ctfpad.sqlite 
+ADD ./fixes.patch .
+RUN git config --global user.name "Docker" && git config --global  user.email "docker@localhost"
+RUN git am < ./fixes.patch
 
 EXPOSE 1234
 EXPOSE 1235
